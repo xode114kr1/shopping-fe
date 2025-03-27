@@ -9,6 +9,8 @@ export const loginWithEmail = createAsyncThunk(
   async ({ email, password }, { rejectWithValue }) => {
     try {
       const response = await api.post("/auth/login", { email, password });
+      const token = response.data.token;
+      sessionStorage.setItem("token", token);
       // 성공
       return response.data;
     } catch (error) {
@@ -57,7 +59,14 @@ export const registerUser = createAsyncThunk(
 
 export const loginWithToken = createAsyncThunk(
   "user/loginWithToken",
-  async (_, { rejectWithValue }) => {}
+  async (_, { rejectWithValue }) => {
+    try {
+      const response = await api.get("/user/me");
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(error.error);
+    }
+  }
 );
 
 const userSlice = createSlice({
@@ -98,6 +107,9 @@ const userSlice = createSlice({
       .addCase(loginWithEmail.rejected, (status, action) => {
         status.loading = false;
         status.loginError = action.payload;
+      })
+      .addCase(loginWithToken.fulfilled, (status, action) => {
+        status.user = action.payload.user;
       });
   },
 });
