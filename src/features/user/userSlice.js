@@ -6,7 +6,17 @@ import { initialCart } from "../cart/cartSlice";
 
 export const loginWithEmail = createAsyncThunk(
   "user/loginWithEmail",
-  async ({ email, password }, { rejectWithValue }) => {}
+  async ({ email, password }, { rejectWithValue }) => {
+    try {
+      const response = await api.post("/auth/login", { email, password });
+      // 성공
+      return response.data;
+    } catch (error) {
+      // 실패
+      // 1. 실패 시 생성 에러값을 reducer에 저장
+      return rejectWithValue(error.error);
+    }
+  }
 );
 
 export const loginWithGoogle = createAsyncThunk(
@@ -76,6 +86,18 @@ const userSlice = createSlice({
       })
       .addCase(registerUser.rejected, (status, action) => {
         status.registrationError = action.payload;
+      })
+      .addCase(loginWithEmail.pending, (status) => {
+        status.loading = true;
+      })
+      .addCase(loginWithEmail.fulfilled, (status, action) => {
+        status.loading = false;
+        status.user = action.payload.user;
+        status.loginError = null;
+      })
+      .addCase(loginWithEmail.rejected, (status, action) => {
+        status.loading = false;
+        status.loginError = action.payload;
       });
   },
 });
