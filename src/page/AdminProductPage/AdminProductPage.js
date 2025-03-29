@@ -36,6 +36,9 @@ const AdminProductPage = () => {
     "",
   ];
 
+  useEffect(() => {
+    dispatch(getProductList());
+  }, []);
   //상품리스트 가져오기 (url쿼리 맞춰서)
 
   useEffect(() => {
@@ -79,7 +82,7 @@ const AdminProductPage = () => {
 
         <ProductTable
           header={tableHeader}
-          data=""
+          data={productList}
           deleteItem={deleteItem}
           openEditForm={openEditForm}
         />
