@@ -37,12 +37,18 @@ const AdminProductPage = () => {
   ];
 
   useEffect(() => {
-    dispatch(getProductList());
-  }, []);
+    dispatch(getProductList({ ...searchQuery }));
+  }, [query]);
   //상품리스트 가져오기 (url쿼리 맞춰서)
 
   useEffect(() => {
     //검색어나 페이지가 바뀌면 url바꿔주기 (검색어또는 페이지가 바뀜 => url 바꿔줌=> url쿼리 읽어옴=> 이 쿼리값 맞춰서  상품리스트 가져오기)
+    if (searchQuery.name === "") {
+      delete searchQuery.name;
+    }
+    const params = new URLSearchParams(searchQuery);
+    const query = params.toString();
+    navigate("?" + query);
   }, [searchQuery]);
 
   const deleteItem = (id) => {
@@ -64,6 +70,8 @@ const AdminProductPage = () => {
   const handlePageClick = ({ selected }) => {
     //  쿼리에 페이지값 바꿔주기
   };
+  // searchbox에서 검색어를 읽어와 url을 새로 생성 후 호출
+  // url 쿼리 읽어오기 후 be에 검색 조건과 함께 보냄
 
   return (
     <div className="locate-center">
