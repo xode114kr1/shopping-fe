@@ -10,6 +10,7 @@ import {
   getProductList,
   deleteProduct,
   setSelectedProduct,
+  editSuccessState,
 } from "../../features/product/productSlice";
 
 const AdminProductPage = () => {
@@ -57,18 +58,24 @@ const AdminProductPage = () => {
 
   const openEditForm = (product) => {
     //edit모드로 설정하고
+    setMode("edit");
+    dispatch(editSuccessState());
     // 아이템 수정다이얼로그 열어주기
+    dispatch(setSelectedProduct(product));
+    setShowDialog(true);
   };
 
   const handleClickNewItem = () => {
     //new 모드로 설정하고
     setMode("new");
+    dispatch(editSuccessState());
     // 다이얼로그 열어주기
     setShowDialog(true);
   };
 
   const handlePageClick = ({ selected }) => {
     //  쿼리에 페이지값 바꿔주기
+    setSearchQuery({ ...searchQuery, page: selected + 1 });
   };
   // searchbox에서 검색어를 읽어와 url을 새로 생성 후 호출
   // url 쿼리 읽어오기 후 be에 검색 조건과 함께 보냄
@@ -98,7 +105,7 @@ const AdminProductPage = () => {
           nextLabel="next >"
           onPageChange={handlePageClick}
           pageRangeDisplayed={5}
-          pageCount={100}
+          pageCount={totalPageNum}
           forcePage={searchQuery.page - 1}
           previousLabel="< previous"
           renderOnZeroPageCount={null}
