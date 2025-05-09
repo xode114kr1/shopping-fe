@@ -24,7 +24,7 @@ const LandingPage = () => {
       <Row>
         {productList.length > 0 ? (
           productList.map((item) => (
-            <Col md={3} sm={12} key={item._id}>
+            <Col lg={3} md={4} sm={6} xs={12} key={item._id}>
               <ProductCard item={item} />
             </Col>
           ))

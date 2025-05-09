@@ -255,6 +255,8 @@ const NewItemDialog = ({ mode, showDialog, setShowDialog }) => {
           <CloudinaryUploadWidget uploadImage={uploadImage} />
 
           <img
+            style={{ objectFit: "contain" }}
+            height={200}
             id="uploadedimage"
             src={formData.image}
             className="upload-image mt-2"
