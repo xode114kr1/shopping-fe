@@ -34,6 +34,7 @@ const AdminProductPage = () => {
     "Stock",
     "Image",
     "Status",
+    "Sold Count",
     "",
   ];
 
