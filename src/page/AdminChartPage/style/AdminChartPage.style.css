@@ -1,0 +1,64 @@
+.admin_dashboard_page{
+    font-family: 'Segoe UI', sans-serif;
+    display: flex;
+    flex-direction: column;
+    padding: 30px;
+    padding-top: 2rem;
+}
+
+.admin_dashboard_page h1{
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 30px;
+}
+
+.admin_dashboard_page h2{
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.admin_dashboard_page h3 {
+  font-size: 14px;
+  color: #666;
+}
+
+.chart_card_contanier {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+.chart_card {
+  background: white;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+}
+
+
+
+.chart_card p {
+  font-size: 20px;
+  font-weight: bold;
+  margin-top: 8px;
+}
+
+.chart_card h1 {
+    font-size: 28px;
+    margin-bottom: 30px;
+}
+
+.chart_contanier{
+    display: flex;
+    gap: 20px;
+}
+
+.chart_box{
+    flex-grow: 1;
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    margin-bottom: 40px;
+}

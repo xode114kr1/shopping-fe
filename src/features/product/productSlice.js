@@ -69,11 +69,24 @@ export const editProduct = createAsyncThunk(
   }
 );
 
+export const getPopularProduct = createAsyncThunk(
+  "products/getPopularProductList",
+  async (_, { dispatch, rejectWithValue }) => {
+    try {
+      const response = await api.get("/product/popular");
+      return response.data.data;
+    } catch (error) {
+      return rejectWithValue(error.error);
+    }
+  }
+);
+
 // 슬라이스 생성
 const productSlice = createSlice({
   name: "products",
   initialState: {
     productList: [],
+    popularProductList: ["asd", "asd"],
     selectedProduct: null,
     loading: false,
     error: "",
@@ -145,6 +158,18 @@ const productSlice = createSlice({
         state.error = "";
       })
       .addCase(getProductDetail.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+      })
+      .addCase(getPopularProduct.pending, (state, action) => {
+        state.loading = true;
+      })
+      .addCase(getPopularProduct.fulfilled, (state, action) => {
+        state.loading = false;
+        state.error = "";
+        state.popularProductList = action.payload;
+      })
+      .addCase(getPopularProduct.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload;
       });

@@ -17,19 +17,24 @@ const Sidebar = () => {
         <Link to="/">
           <img width={100} src="/image/hm-logo.png" alt="hm-logo.png" />
         </Link>
-        {/* <div className="sidebar-item">Admin Account</div> */}
         <ul className="sidebar-area">
+          <li
+            className="sidebar-item"
+            onClick={() => handleSelectMenu("/admin/dashboard")}
+          >
+            Dash board
+          </li>
           <li
             className="sidebar-item"
             onClick={() => handleSelectMenu("/admin/product?page=1")}
           >
-            product
+            Product
           </li>
           <li
             className="sidebar-item"
             onClick={() => handleSelectMenu("/admin/order?page=1")}
           >
-            order
+            Order
           </li>
         </ul>
       </div>

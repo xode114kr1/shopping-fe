@@ -11,6 +11,7 @@ import ProductAll from "../page/LandingPage/LandingPage";
 import ProductDetail from "../page/ProductDetailPage/ProductDetailPage";
 import RegisterPage from "../page/RegisterPage/RegisterPage";
 import PrivateRoute from "./PrivateRoute";
+import AdminChartPage from "../page/AdminChartPage/AdminChartPage";
 
 const AppRouter = () => {
   return (
@@ -26,6 +27,7 @@ const AppRouter = () => {
         <Route path="/account/purchase" element={<MyPage />} />
       </Route>
       <Route element={<PrivateRoute permissionLevel="admin" />}>
+        <Route path="/admin/dashboard" element={<AdminChartPage />} />
         <Route path="/admin/product" element={<AdminProduct />} />
         <Route path="/admin/order" element={<AdminOrderPage />} />
       </Route>
