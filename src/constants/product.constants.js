@@ -13,6 +13,7 @@ export const PRODUCT_EDIT_SUCCESS = "PRODUCT_EDIT_SUCCESS";
 export const PRODUCT_EDIT_FAIL = "PRODUCT_EDIT_FAIL";
 export const SET_FILTERED_LIST = "SET_FILTERED_LIST";
 export const CATEGORY = ["Top", "Dress", "Pants"];
+export const TAG = ["여성", "Divided", "남성", "신생아/유아", "아동", "Sale"];
 export const STATUS = ["active", "disactive"];
 export const SIZE = ["XS", "S", "M", "L", "XL"];
 export const TOGGLE_ITEM_DIALOG = "TOGGLE_ITEM_DIALOG";

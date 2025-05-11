@@ -2,7 +2,13 @@ import React, { useState, useEffect } from "react";
 import { Form, Modal, Button, Row, Col, Alert } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import CloudinaryUploadWidget from "../../../utils/CloudinaryUploadWidget";
-import { CATEGORY, STATUS, SIZE } from "../../../constants/product.constants";
+
+import {
+  CATEGORY,
+  STATUS,
+  SIZE,
+  TAG,
+} from "../../../constants/product.constants";
 import "../style/adminProduct.style.css";
 import {
   clearError,
@@ -19,6 +25,7 @@ const InitialFormData = {
   category: [],
   status: "active",
   price: 0,
+  tag: [],
 };
 
 const NewItemDialog = ({ mode, showDialog, setShowDialog }) => {
@@ -308,6 +315,29 @@ const NewItemDialog = ({ mode, showDialog, setShowDialog }) => {
             </Form.Select>
           </Form.Group>
         </Row>
+        <Form.Group>
+          <Form.Label>Tag</Form.Label>
+          <div className="tag-contanier">
+            {TAG.map((item, idx) => {
+              const isSelected = formData.tag.includes(item);
+              return (
+                <Button
+                  key={idx}
+                  variant={isSelected ? "primary" : "outline-primary"}
+                  className="me-2 mb-2"
+                  onClick={() => {
+                    const newTags = isSelected
+                      ? formData.tag.filter((t) => t !== item)
+                      : [...formData.tag, item];
+                    setFormData({ ...formData, tag: newTags });
+                  }}
+                >
+                  {item}
+                </Button>
+              );
+            })}
+          </div>
+        </Form.Group>
         {mode === "new" ? (
           <Button variant="primary" type="submit">
             Submit

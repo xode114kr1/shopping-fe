@@ -48,3 +48,9 @@
     font-size: 10pt;
     padding-right: 10px;
 }
+
+.tag-contanier{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
